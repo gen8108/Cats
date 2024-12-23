@@ -8,14 +8,16 @@ def load_image(url):
     try:
         response = requests.get(url)
         response.raise_for_status() # для обработки исключений
-        image_data = BytesIO(response.content) # кортинка будет преобразована с помощью BytesIO
+        image_data = BytesIO(response.content) # картинка будет преобразована с помощью BytesIO
         img = Image.open(image_data)
+        img.thumbnail((600, 480), Image.Resampling.LANCZOS)# картинку подогнать под размер
+        #Image.Resampling.LANCZOS принцип по которому будет конвертироваться картинка(не страдает качество)
         return ImageTk.PhotoImage(img)
     except Exception as e:
         print(f"Произошла ошибка: {e}")
         return None
 
-def set_image
+def set_image():
     img = load_image(url)
 
     if img:
@@ -25,7 +27,7 @@ def set_image
 
 window = Tk()
 window.title("Cats!")
-window.geometry("600x480")
+window.geometry("600x520")
 
 label = Label()
 label.pack()
