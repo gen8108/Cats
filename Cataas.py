@@ -18,15 +18,18 @@ def load_image(url):
         return None
 
 def open_new_window():
-    img = load_image(url)
+    tag = tag_entry.get()
+    url_tag = f"https://cataas.com/cat/{tag}" if tag else "https://cataas.com/cat"
+    img = load_image(url_tag)
 
     if img:
         new_window = Toplevel()
         new_window.title("Картинка с котиком")
-        new_window.пущьуекн("600x480")
-        label = Label(new_window, image=img)
+        new_window.geometry("600x480")
+        label = Label(new_window, image = img)
         label.pack()
         label.image = img  # нужно чтобы сборщик мусора не убрал картинку
+
 
 def exit():
     window.destroy()
@@ -36,6 +39,11 @@ window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
 
+tag_entry = Entry()
+tag_entry.pack()
+
+load_button = Button(text="Загрузить по тегу", command=open_new_window)
+load_button.pack()
 
 
 # update_button = Button(text= "Обновить", command=set_image)# обновление
@@ -51,7 +59,5 @@ file_menu.add_separator()
 file_menu.add_command(label="Выход", command=exit)
 
 url = "https://cataas.com/cat" # url адрес в интернете
-
-set_image()
 
 window.mainloop()
