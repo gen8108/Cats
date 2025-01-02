@@ -42,13 +42,6 @@ window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
 
-tag_entry = Entry()
-tag_entry.pack()
-
-load_button = Button(text="Загрузить по тегу", command=open_new_window)
-load_button.pack()
-
-
 # update_button = Button(text= "Обновить", command=set_image)# обновление
 # update_button.pack()
 
@@ -68,5 +61,8 @@ tag_label.pack()
 
 tag_combobox = ttk.Combobox(values=Allowed_tags)
 tag_combobox.pack()
+
+load_button = Button(text="Загрузить по тегу", command=open_new_window)
+load_button.pack()
 
 window.mainloop()
